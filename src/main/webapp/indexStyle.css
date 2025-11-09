@@ -1,0 +1,182 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root {
+	--x: 0;
+	--y: 0;
+	--xp: 0;
+	--yp: 0;
+	--hue: calc(0 + (var(--xp) * 500));
+	--bg: hsl(0 0% 10%);
+	--size: 100px;
+	--glow: radial-gradient(50% 50% at center,
+			hsl(var(--hue) 80% 85%),
+			hsl(var(--hue) 80% 70%),
+			transparent) calc((var(--x) * 1px) - (var(--size) * 0.5)) calc((var(--y) * 1px) - (var(--size) * 0.5)) / var(--size) var(--size) no-repeat fixed;
+}
+
+*,
+*:after,
+*:before {
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+
+body{
+	user-select: none;
+	font-family: "Poppins", sans-serif;
+	background-color: #121212;
+	background: url(background.jpg);
+	object-fit: cover;
+	width:100vw;
+	height:100vh;
+	overflow:hidden;
+}
+
+.opacity-layer{
+	background-color: #121212;
+	width: 100vw;
+	height: 100vh;
+	opacity: 0.85;
+	z-index: 1;
+}
+
+.container{
+	color: black;
+	
+	position: absolute;
+	top: 20vh;
+	left: 25vw;
+	z-index: 2;
+	width:auto;
+	text-align: center;
+}
+
+h1 {
+  font-size: 12rem;
+  color: #3464bd;
+  letter-spacing: 5px;
+  text-shadow:  /* black border around text */  -1px -1px 0 #000,  1px -1px 0 #000,  -1px 1px 0 #000,  1px 1px 0 #000,  /* blue glow layers */  0 1px 0 #99ccff,  0 2px 0 #80bfff,  0 3px 0 #66b2ff,  0 4px 0 #4da6ff,  0 5px 0 #3399ff,  0 6px 1px rgba(0, 128, 255, 0.2),  0 0 5px rgba(0, 128, 255, 0.3),  0 1px 3px rgba(0, 128, 255, 0.4),  0 3px 5px rgba(0, 128, 255, 0.3),  0 5px 10px rgba(0, 128, 255, 0.35),  0 10px 10px rgba(0, 128, 255, 0.3),  0 20px 20px rgba(0, 128, 255, 0.25);
+  transition: text-shadow 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: text-shadow 0.5s ease;
+  -moz-transition: text-shadow 0.5s ease;
+  -ms-transition: text-shadow 0.5s ease;
+  -o-transition: text-shadow 0.5s ease;
+}
+
+h1::after{
+  content:"";
+  background-image: url('icon.png');
+  opacity: 0;
+  background-size: cover;
+  position:absolute;
+  top: 36%;
+  left: 24%;
+  width: 10%;
+  height: 28%;
+  z-index: -1;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  
+  /* Make the after element interactive */
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+h1:hover{
+	text-shadow:
+  0 1px 0 #99ccff,
+  0 2px 0 #80bfff,
+  0 3px 0 #66b2ff,
+  0 4px 0 #4da6ff,
+  0 5px 0 #3399ff,
+  0 0 6px rgba(0, 128, 255, 0.4),
+  0 0 12px rgba(0, 128, 255, 0.5),
+  0 0 18px rgba(0, 128, 255, 0.45),
+  0 0 25px rgba(0, 128, 255, 0.4);
+}
+
+h1:hover::after{
+  opacity: 1;
+}
+
+h1 a{
+  text-decoration: none;
+  color: #3464bd;
+}
+
+h2 .description{
+	color:#99ccff;
+}
+
+ul{
+	list-style-type:none;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	gap: 3rem;
+	margin-bottom: 5px;
+}
+
+button {
+	border-radius: 1rem;
+	text-transform: uppercase;
+	font-size: 1.5rem;
+	font-weight: bold;
+	letter-spacing: 0.1ch;
+	border: 4px solid transparent;
+	box-shadow: 0 1px hsl(0 0% 100% / 0.15) inset;
+	cursor: pointer;
+	background:
+		linear-gradient(var(--bg), var(--bg)) padding-box,
+		var(--glow),
+		linear-gradient(black, black) border-box;
+	transition: background-size 0.24s;
+	position: relative;
+	padding: 1.5rem 3rem;
+	margin: 30px;
+}
+
+button::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	box-shadow: 0 1px hsl(0 0% 100% / 0.15) inset;
+	background: var(--bg);
+	z-index: 2;
+	border-radius: 1rem;
+}
+
+button span {
+	background: var(--glow), black;
+	background-clip: text;
+	color: transparent;
+	height: 100%;
+	width: 100%;
+	z-index: 2;
+	position: relative;
+	inset: 0;
+}
+:root:has(button:active) {
+	--size: 300px;
+}
+button::after {
+	content: "";
+	position: absolute;
+	inset: -4px;
+	filter: blur(20px);
+	border: 4px solid transparent;
+	background: var(--glow);
+	border-radius: 1rem;
+}
